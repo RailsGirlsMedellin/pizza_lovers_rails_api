@@ -13,6 +13,15 @@ module Api
           render json: @pizza.errors, status: :unprocessable_entity
         end
       end
+
+      def destroy
+        @pizza = @pizzas.find_by(params[:id])
+        if @pizza
+          @pizza.destroy
+        else
+          render json: {post: "not found"}, status: :not_found
+        end
+      end
       
       private
       
