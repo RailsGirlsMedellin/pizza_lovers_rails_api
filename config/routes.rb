@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :pizzas
-   
-        post 'upvote'
-      
+        post 'upvote'   
     end
   end
 end
