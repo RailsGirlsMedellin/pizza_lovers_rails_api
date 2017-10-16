@@ -4,37 +4,45 @@ module Api
 
       def index
         @pizzas = Pizza.order('created_at DESC')
-        render json: @pizzas
       end
 
       def create
         @pizza = Pizza.new(pizza_params)
         if @pizza.save
-          render status: :created
+          render json: {status: :created}
         else
-          render json: @pizza.errors, status: :unprocessable_entity
+          render json: @pizza.errors
         end
       end
 
       def upvote
-        @pizza = Pizza.find(params[:id])
+        @pizza = Pizza.find(params[:pizza_id])
         @pizza.votes.create
-        render json: @pizzas  
+        render json: {status: :created}
       end
 
       def destroy
-        @pizza = @pizzas.find_by(params[:id])
+        @pizza = Pizza.find_by(params[:id])
         if @pizza
           @pizza.destroy
         else
-          render json: {post: "not found"}, status: :not_found
+          render json: {post: "not found"}
+        end
+      end
+
+      def update
+        @pizza = Pizza.find_by(params[:id])
+        if @pizza.update(pizza_params)
+          render json: {status: :updated}
+        else
+          render json: @pizza.errors
         end
       end
       
       private
       
       def pizza_params
-        params.require(:pizza).permit(:name, :ingredients)
+        params.require(:pizza).permit(:name, :ingredients, :image_url)
       end
     end 
   end
