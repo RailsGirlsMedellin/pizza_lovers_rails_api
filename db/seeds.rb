@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Votes.destroy_all
 Pizza.destroy_all
 
 Pizza.create([
@@ -15,7 +16,7 @@ Pizza.create([
   {
     name:	"Fiesta Pepperoni",
     ingredients:	"Doble pepperoni y extraqueso",
-    image_url:"https://www.cicis.com/media/1243/pizza_adven_zestypepperoni.png"
+    image_url:"https://cdn4.ruled.me/wp-content/uploads/2014/08/pepperonipizza.jpg"
   },
   {
     name:	"Hawaiana",
